@@ -16,6 +16,7 @@
 <div id="page" class="min-h-screen flex flex-col">
 
 	<?php do_action( 'tailpress_header' ); ?>
+	
 
 	<header>
 
