@@ -12,8 +12,7 @@
 
 <?php
 // Verifica se o token está presente na URL
-if (isset($_GET['token'])) {
-    // Obtém o token da URL
+if (isset($_GET['token']) && !empty($_GET['token'])) {
     $token = $_GET['token'];
 
     // Consulta o post pelo token
