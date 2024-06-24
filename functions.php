@@ -494,3 +494,64 @@ function create_confirmed_posts($people, $convidado_id) {
     return $ids;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Função para adicionar meta box
+function adicionar_meta_box_convidados() {
+    add_meta_box(
+        'meta-box-convidados',
+        'URL para confirmação de presença',
+        'exibir_meta_box_convidados',
+        'convidados',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'adicionar_meta_box_convidados');
+
+// Função para exibir conteúdo da meta box
+function exibir_meta_box_convidados($post) {
+    // Verifica se o post possui o campo personalizado 'token'
+    $token = get_post_meta($post->ID, 'token', true);
+    
+    if ($token) {
+        // Constrói a URL com o token
+        $url = esc_url(add_query_arg('token', $token, home_url('/confirme-sua-presenca/')));
+        ?>
+        
+        <!-- Campo de URL com token -->
+        <input type="text" id="token-url-input" value="<?php echo $url; ?>" readonly>
+        <button class="button button-primary" id="copy-token-url">Copiar URL</button>
+
+        <script>
+        // Script para copiar a URL ao clicar no botão
+        document.addEventListener('DOMContentLoaded', function() {
+            var copyButton = document.getElementById('copy-token-url');
+            var tokenUrlInput = document.getElementById('token-url-input');
+
+            copyButton.addEventListener('click', function() {
+                event.preventDefault();
+                tokenUrlInput.select();
+                document.execCommand('copy');
+                // alert('URL copiada para a área de transferência.');
+            });
+        });
+        </script>
+
+        <?php
+    } else {
+        echo '<p>Não há token definido para este convidado.</p>';
+    }
+}
