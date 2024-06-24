@@ -16,11 +16,10 @@
 <div id="page" class="min-h-screen flex flex-col">
 
 	<?php do_action( 'tailpress_header' ); ?>
-	
 
 	<header>
 
-		<div class="mx-auto container">
+		<div class="mx-auto container hidden">
 			<div class="lg:flex lg:justify-between lg:items-center border-b py-6">
 				<div class="flex justify-between items-center">
 					<div>

@@ -3,6 +3,11 @@ const tailpress = require("@jeffreyvr/tailwindcss-tailpress");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    purge: [
+        // Paths to your PHP files that contain HTML with Tailwind CSS classes
+        '*.php',
+        '**/*.php',
+    ],
     content: [
         './*.php',
         './**/*.php',
